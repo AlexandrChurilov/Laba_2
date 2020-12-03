@@ -1,0 +1,67 @@
+﻿<Window x:Class="Laba2.Полная_информация"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba2"
+        mc:Ignorable="d"
+        Title="Полная_информация" Height="653.725" Width="1396.388" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" >
+    <Grid Loaded="Grid_Loaded">
+        <DataGrid HorizontalAlignment="Left" RowHeight= "NaN"  Name="Data_Source" Height="530" Margin="20,34,0,0" VerticalAlignment="Top" Width="1340" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False" SelectionChanged="Data_SelectionChanged"  Loaded="Data_Source_Loaded" Background="#FFCADCDF">
+
+            <DataGrid.Columns>
+
+
+                <DataGridTextColumn Binding="{Binding Path = Thrat}" Header="Идентификатор " IsReadOnly="True" Width="97"/>
+                <DataGridTextColumn Header="Наименование" Binding="{Binding Path=Info }" IsReadOnly="True" Width="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=Source }" IsReadOnly="True" Width="600">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Источник" Binding="{Binding Path=Description }" IsReadOnly="True" Width="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Header="Объект" Binding="{Binding Path=ObjectOfImpact }" IsReadOnly="True" Width="120">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path = Confidentiality}" Header="Конфиденциальность" IsReadOnly="True" Width="40"/>
+                <DataGridTextColumn Binding="{Binding Path = Integrity}" Header="Целостность" IsReadOnly="True" Width="40"/>
+
+                <DataGridTextColumn Header="Доступность" Binding="{Binding Path=Availabilities}" IsReadOnly="True" Width="40">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button Content="ВПЕРЕД&gt;&gt;" x:Name="button" HorizontalAlignment="Left" Margin="740,583,0,0" VerticalAlignment="Top" Width="154" Click="Button_Click" FontWeight="Bold" Height="31" Background="#FFD06A6A"/>
+        <Button Content="&lt;&lt;НАЗАД" Name="button2" HorizontalAlignment="Left" Margin="515,583,0,0" VerticalAlignment="Top" Width="141" Click="button2_Click" Height="31" FontWeight="Bold" Background="#FFD96A6A"/>
+        <Label Content="Полная информация" HorizontalAlignment="Left" Margin="552,-3,0,0" VerticalAlignment="Top" Background="#FFC8D088" FontWeight="Bold" FontSize="16" FontStyle="Italic"/>
+
+
+    </Grid>
+</Window>
