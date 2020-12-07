@@ -9,7 +9,7 @@ namespace Laba2
     [Serializable]
     public class Threat
     {
-        [NonSerialized]
+        
         
         private string _integ ;
         private string _confidentiality ;
