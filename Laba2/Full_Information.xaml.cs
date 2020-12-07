@@ -18,7 +18,7 @@ namespace Laba2
     /// <summary>
     /// Логика взаимодействия для Полная_информация.xaml
     /// </summary>
-    public partial class Полная_информация : Window
+    public partial class Full_Information : Window
     {
         public List<Threat> threats15 = new List<Threat>();
         public void Back(int a)
@@ -50,7 +50,7 @@ namespace Laba2
                 threats15.Add(Parser.threat[i]);
             }
         } 
-        public Полная_информация()
+        public Full_Information()
         {
 
             InitializeComponent();

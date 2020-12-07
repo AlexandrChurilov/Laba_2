@@ -9,9 +9,11 @@ namespace Laba2
     [Serializable]
     public class Threat
     {
-        private string integ ;
-        private string confidentiality ;
-        private string availabilities;
+        [NonSerialized]
+        
+        private string _integ ;
+        private string _confidentiality ;
+        private string _availabilities;
 
         public string Thrat { get; set; }
         public string Info { get; set; }
@@ -21,8 +23,8 @@ namespace Laba2
         public string ObjectOfImpact { get; set; }
         public string Confidentiality 
         { 
-            get { return confidentiality; } 
-            set { if (value == "1"||value=="ДА") { confidentiality = "ДА"; } else { confidentiality = "НЕТ"; } } 
+            get { return _confidentiality; } 
+            set { if (value == "1"||value=="ДА") { _confidentiality = "ДА"; } else { _confidentiality = "НЕТ"; } } 
         }
         public string Integrity
         { 
@@ -30,22 +32,22 @@ namespace Laba2
             {
                 if (value == "1"||value=="ДА")
                 {
-                    integ = "ДА";
+                    _integ = "ДА";
                 }
                 else
                 {
-                    integ = "НЕТ";
+                    _integ = "НЕТ";
                 }
             }
             get
             {
-                return integ;
+                return _integ;
             }
         }
         public string Availabilities
         {
-            get { return availabilities; }
-            set { if (value == "1"||value=="ДА") { availabilities = "ДА"; } else { availabilities = "НЕТ"; } }
+            get { return _availabilities; }
+            set { if (value == "1"||value=="ДА") { _availabilities = "ДА"; } else { _availabilities = "НЕТ"; } }
         }
 
         public Threat()

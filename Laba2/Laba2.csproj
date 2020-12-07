@@ -67,12 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FileReaderWriter.cs" />
     <Compile Include="IParser.cs" />
-    <Compile Include="Obnova.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Threat.cs" />
-    <Compile Include="Полная информация.xaml.cs">
-      <DependentUpon>Полная информация.xaml</DependentUpon>
+    <Compile Include="Full_Information.xaml.cs">
+      <DependentUpon>Full_Information.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -87,7 +87,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Полная информация.xaml">
+    <Page Include="Full_Information.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

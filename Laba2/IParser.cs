@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Laba2
 {
-    interface IParser
+   public interface IParser
     {
         void ParserWork(List<Threat> threats);
 
-        void WriteXmlBd();
-        void ReadXmlBd();
+       
     }
 }

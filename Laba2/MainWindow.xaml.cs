@@ -20,11 +20,28 @@ namespace Laba2
     public partial class MainWindow : Window
     {
 
+
+        private IParser _parser;
+
+        public void Intialize(IParser parser)
+        {
+            _parser = parser;
+
+        }
+
+
+        FileReaderWriter warf = new FileReaderWriter();
+
+        public Parser parser = new Parser();
+
         public MainWindow()
         {
             InitializeComponent();
 
-            if (!File.Exists(Environment.CurrentDirectory + @"\thrlist.xlsx")&& !File.Exists(Environment.CurrentDirectory + @"\threat.xml"))
+            Intialize(new Parser());
+
+
+            if (!File.Exists(Environment.CurrentDirectory + @"\thrlist.xlsx") && !File.Exists(Environment.CurrentDirectory + @"\threat.xml"))
             {
                 button1.IsEnabled = true;
                 button4.IsEnabled = false;
@@ -36,18 +53,18 @@ namespace Laba2
             {
                 button1.IsEnabled = false;
                 button4.IsEnabled = false;
-                new Parser().ReadXmlBd();
+                warf.ReadXmlBd();
                 Data.ItemsSource = Parser.threat;
             }
             else
             {
                 button1.IsEnabled = false;
                 button4.IsEnabled = false;
-                new Parser().ParserWork(Parser.threat);
-                new Parser().WriteXmlBd();
+                _parser.ParserWork(Parser.threat);
+                warf.WriteXmlBd();
                 Data.ItemsSource = Parser.threat;
             }
-            
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -56,9 +73,8 @@ namespace Laba2
             button3.IsEnabled = true;
 
 
-
-            new Parser().ParserWork(Parser.threat);
-            new Parser().WriteXmlBd();
+            _parser.ParserWork(Parser.threat);
+            warf.WriteXmlBd();
 
             Data.ItemsSource = Parser.threat;
             button4.IsEnabled = false;
@@ -88,8 +104,8 @@ namespace Laba2
             Parser.threat.Clear();
             Data.ItemsSource = null;
             Data.Items.Refresh();
-            new Parser().ParserWork(Parser.threat);
-            new Parser().WriteXmlBd();
+            _parser.ParserWork(Parser.threat);
+            warf.WriteXmlBd();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -97,39 +113,39 @@ namespace Laba2
             try
             {
                 DownloadFile.Download();
-                Obnova.obnova.Clear();
-                new Parser().ParserWork(Obnova.obnova);
+                parser.obnova.Clear();
+                _parser.ParserWork(parser.obnova);
 
-                for (int i = 0; i < Obnova.obnova.Count(); i++)
+                for (int i = 0; i < parser.obnova.Count(); i++)
                 {
 
-                    if (!Obnova.obnova[i].ToString().Equals(Parser.threat[i].ToString()))
+                    if (!parser.obnova[i].ToString().Equals(Parser.threat[i].ToString()))
                     {
 
-                        Obnova.changers.Add(Obnova.obnova[i]);
-                        Obnova.old_information.Add(Parser.threat[i]);
-                        Obnova.countObnova++;
+                        parser.changers.Add(parser.obnova[i]);
+                        parser.old_information.Add(Parser.threat[i]);
+
 
                     }
 
                 }
-                
-                MessageBox.Show($"Колличество изменений: {Obnova.countObnova}");
-                if (Obnova.countObnova > 0)
+
+                MessageBox.Show($"Колличество изменений: {parser.changers.Count()}");
+                if (parser.changers.Count() > 0)
                 {
                     renovation();
                     Data.ItemsSource = Parser.threat;
                     MessageBox.Show("УСПЕШНО!!!");
                     string report = null;
-                    for (int i = 0; i < Obnova.changers.Count(); i++)
+                    for (int i = 0; i < parser.changers.Count(); i++)
                     {
-                        report += $"\n{Obnova.changers[i].Thrat} \n БЫЛО: \n {Obnova.changers[i].ToString().Replace(Obnova.changers[i].Thrat, "") }\n СТАЛО: \n {Obnova.old_information[i].ToString().Replace(Obnova.changers[i].Thrat, "")} ";
-                        MessageBox.Show($"ОТЧЕТ\n Колличество {Obnova.countObnova}\n {report}");
+                        report += $"\n{parser.changers[i].Thrat} \n БЫЛО: \n {parser.changers[i].ToString().Replace(parser.changers[i].Thrat, "") }\n СТАЛО: \n {parser.old_information[i].ToString().Replace(parser.changers[i].Thrat, "")} ";
+                        MessageBox.Show($"ОТЧЕТ\n Колличество {parser.changers.Count()}\n {report}");
                         report = "";
                     }
-                    Obnova.countObnova = 0;
-                    Obnova.changers.Clear();
-                    Obnova.old_information.Clear();
+
+                    parser.changers.Clear();
+                    parser.old_information.Clear();
                 }
                 else
                 {
@@ -144,12 +160,11 @@ namespace Laba2
                 MessageBox.Show("Ошибка " + t);
             }
 
-
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Полная_информация taskWindow = new Полная_информация();
+            Full_Information taskWindow = new Full_Information();
             taskWindow.Owner = this;
             taskWindow.Show();
 
